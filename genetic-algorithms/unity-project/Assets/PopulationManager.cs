@@ -16,6 +16,7 @@ public class PopulationManager : MonoBehaviour
 
     void OnGui()
     {
+        Debug.Log("OnGui called!");
         guiSytle.fontSize = 50;
         guiSytle.normal.textColor = Color.white;
         GUI.Label(new Rect(10, 10, 100, 20), "Generation: " + generation, guiSytle);
@@ -47,10 +48,23 @@ public class PopulationManager : MonoBehaviour
         DNA dna2 = parent2.GetComponent<DNA>();
 
         //swap parent dna
-        // 50% chance of getting either parent 1 or parent 2's DNA values
-        offspring.GetComponent<DNA>().r = Random.Range(0, 10) < 5 ? dna1.r : dna2.r;
-        offspring.GetComponent<DNA>().g = Random.Range(0, 10) < 5 ? dna1.g : dna2.g;
-        offspring.GetComponent<DNA>().b = Random.Range(0, 10) < 5 ? dna1.b : dna2.b;
+        // Adding randomness to simulate mutation 
+        if (Random.Range(0, 1000) < 5)
+        {
+            // 50% chance of getting either parent 1 or parent 2's DNA values
+            offspring.GetComponent<DNA>().r = Random.Range(0, 10) < 5 ? dna1.r : dna2.r;
+            offspring.GetComponent<DNA>().g = Random.Range(0, 10) < 5 ? dna1.g : dna2.g;
+            offspring.GetComponent<DNA>().b = Random.Range(0, 10) < 5 ? dna1.b : dna2.b;
+        } else
+        {
+            //Random mutation
+            offspring.GetComponent<DNA>().r = Random.Range(0.0f, 1.0f);
+            offspring.GetComponent<DNA>().g = Random.Range(0.0f, 1.0f);
+            offspring.GetComponent<DNA>().b = Random.Range(0.0f, 1.0f);
+        }
+
+
+
         return offspring;
 
     }
