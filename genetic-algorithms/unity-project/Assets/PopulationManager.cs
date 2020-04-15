@@ -13,6 +13,7 @@ public class PopulationManager : MonoBehaviour
     int generation = 1;
 
     GUIStyle guiSytle = new GUIStyle();
+
     void OnGui()
     {
         guiSytle.fontSize = 50;
@@ -35,6 +36,23 @@ public class PopulationManager : MonoBehaviour
             population.Add(gameObject);
         }
         
+    }
+
+
+    GameObject Breed(GameObject parent1, GameObject parent2)
+    {
+        Vector3 position = new Vector3(Random.Range(-7.5f, 7.5f), Random.Range(-4.5f, 4.5f), 0);
+        GameObject offspring = Instantiate(personPrefab, position, Quaternion.identity);
+        DNA dna1 = parent1.GetComponent<DNA>();
+        DNA dna2 = parent2.GetComponent<DNA>();
+
+        //swap parent dna
+        // 50% chance of getting either parent 1 or parent 2's DNA values
+        offspring.GetComponent<DNA>().r = Random.Range(0, 10) < 5 ? dna1.r : dna2.r;
+        offspring.GetComponent<DNA>().g = Random.Range(0, 10) < 5 ? dna1.g : dna2.g;
+        offspring.GetComponent<DNA>().b = Random.Range(0, 10) < 5 ? dna1.b : dna2.b;
+        return offspring;
+
     }
 
     void BreedNewPopulation()
