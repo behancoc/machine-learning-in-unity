@@ -34,6 +34,7 @@ public class PopulationManager : MonoBehaviour
             gameObject.GetComponent<DNA>().r = Random.Range(0.0f, 1.0f);
             gameObject.GetComponent<DNA>().g = Random.Range(0.0f, 1.0f);
             gameObject.GetComponent<DNA>().b = Random.Range(0.0f, 1.0f);
+            gameObject.GetComponent<DNA>().s = Random.Range(0.1f, 0.7f);
             population.Add(gameObject);
         }
         
@@ -55,12 +56,15 @@ public class PopulationManager : MonoBehaviour
             offspring.GetComponent<DNA>().r = Random.Range(0, 10) < 5 ? dna1.r : dna2.r;
             offspring.GetComponent<DNA>().g = Random.Range(0, 10) < 5 ? dna1.g : dna2.g;
             offspring.GetComponent<DNA>().b = Random.Range(0, 10) < 5 ? dna1.b : dna2.b;
+            offspring.GetComponent<DNA>().s = Random.Range(0, 10) < 5 ? dna1.s : dna2.s;
+
         } else
         {
             //Random mutation
             offspring.GetComponent<DNA>().r = Random.Range(0.0f, 1.0f);
             offspring.GetComponent<DNA>().g = Random.Range(0.0f, 1.0f);
             offspring.GetComponent<DNA>().b = Random.Range(0.0f, 1.0f);
+            offspring.GetComponent<DNA>().s = Random.Range(0.1f, 0.3f);
         }
 
 
